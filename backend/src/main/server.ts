@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import { config } from "../config/config";
 import { connectDB } from "../infrastructure/database/db";
+import { errorHandler } from "../interface/middlewares/error.middleware";
 
 const app: Application = express();
 const PORT: number = config.PORT;
@@ -33,8 +34,11 @@ app.get("/", (req: Request, res: Response) => {
   });
 });
 
+//error handling middleware
+app.use(errorHandler);
+
 //listen port
 app.listen(PORT, () => {
-  console.log(`Server is running on port : http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
   connectDB();
 });
