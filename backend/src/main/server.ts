@@ -3,6 +3,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { config } from "../config/config";
+import { connectDB } from "../infrastructure/database/db";
 
 const app: Application = express();
 const PORT: number = config.PORT;
@@ -35,4 +36,5 @@ app.get("/", (req: Request, res: Response) => {
 //listen port
 app.listen(PORT, () => {
   console.log(`Server is running on port : http://localhost:${PORT}`);
+  connectDB();
 });
