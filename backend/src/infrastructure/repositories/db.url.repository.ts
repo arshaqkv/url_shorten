@@ -12,16 +12,25 @@ export class DBUrlRepository implements IUrlRepository {
     return await UrlModel.find({ userId });
   }
 
-  async getShortUrl(shortCode: string): Promise<Url | null> {
-    return await UrlModel.findOne({ shortCode });
+  async getShortUrl(userId: string, shortCode: string): Promise<Url | null> {
+    return await UrlModel.findOne({ userId, shortCode });
   }
 
-  async getUrlByOriginalUrl(originalUrl: string): Promise<Url | null> {
-    return await UrlModel.findOne({ originalUrl });
+  async getUrlByOriginalUrl(
+    userId: string,
+    originalUrl: string
+  ): Promise<Url | null> {
+    return await UrlModel.findOne({ userId, originalUrl });
   }
 
-  async updateUrl(shortCode: string, updateData: Partial<Url>): Promise<void> {
-    await UrlModel.findOneAndUpdate({ shortCode }, updateData, { new: true });
+  async updateUrl(
+    userId: string,
+    shortCode: string,
+    updateData: Partial<Url>
+  ): Promise<void> {
+    await UrlModel.findOneAndUpdate({ userId, shortCode }, updateData, {
+      new: true,
+    });
   }
 
   async countUrlDocuments(userId: string): Promise<number> {

@@ -4,6 +4,7 @@ interface IUrl extends Document {
   userId: string;
   originalUrl: string;
   shortCode: string;
+  title: string;
   createdAt: Date;
   expiresAt: Date;
   analytics: {
