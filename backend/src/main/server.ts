@@ -5,6 +5,7 @@ import cors from "cors";
 import { config } from "../config/config";
 import { connectDB } from "../infrastructure/database/db";
 import { errorHandler } from "../interface/middlewares/error.middleware";
+import { authRoutes } from "../interface/routes/auth.routes";
 
 const app: Application = express();
 const PORT: number = config.PORT;
@@ -33,6 +34,9 @@ app.get("/", (req: Request, res: Response) => {
     message: "API is working",
   });
 });
+
+//routes
+app.use("/api/auth", authRoutes);
 
 //error handling middleware
 app.use(errorHandler);
