@@ -7,7 +7,7 @@ interface IUrl extends Document {
   title: string;
   createdAt: Date;
   expiresAt: Date;
-  analytics: {
+  analytics?: {
     clicks: number;
     geoStats: Map<string, number>;
   };
