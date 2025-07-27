@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { Url } from "../../domain/entities/url.entity";
 import { IUrlRepository } from "../../domain/interface/url.repository";
 import { UrlModel } from "../models/url.model";
@@ -40,5 +41,10 @@ export class DBUrlRepository implements IUrlRepository {
       userId,
       createdAt: { $gte: today },
     });
+  }
+
+  async getShortUrlById(id: string): Promise<Url | null> {
+    const objectId = new mongoose.Types.ObjectId(id);
+    return await UrlModel.findById(objectId);
   }
 }

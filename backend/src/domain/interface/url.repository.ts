@@ -11,4 +11,5 @@ export interface IUrlRepository {
     updateData: Partial<Url>
   ): Promise<void>;
   countUrlDocuments(userId: string): Promise<number>;
+  getShortUrlById(id: string): Promise<Url | null>;
 }
