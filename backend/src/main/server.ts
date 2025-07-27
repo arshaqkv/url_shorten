@@ -5,7 +5,10 @@ import cors from "cors";
 import { config } from "../config/config";
 import { connectDB } from "../infrastructure/database/db";
 import { errorHandler } from "../interface/middlewares/error.middleware";
+
 import { authRoutes } from "../interface/routes/auth.routes";
+import { urlRoutes } from "../interface/routes/url.routes";
+import { redirectRoutes } from "../interface/routes/redirect.routes";
 
 const app: Application = express();
 const PORT: number = config.PORT;
@@ -26,6 +29,7 @@ app.use(
     credentials: config.CORS.CREDENTIALS,
   })
 );
+app.set('trust proxy', true);
 
 //test api
 app.get("/", (req: Request, res: Response) => {
@@ -37,6 +41,8 @@ app.get("/", (req: Request, res: Response) => {
 
 //routes
 app.use("/api/auth", authRoutes);
+app.use("/api/url", urlRoutes);
+app.use("/", redirectRoutes);
 
 //error handling middleware
 app.use(errorHandler);
