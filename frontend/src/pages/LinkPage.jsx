@@ -7,11 +7,15 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
+import { Button } from "../components/ui/button";
+import { useNavigate } from "react-router-dom";
+import LinkCard from "@/components/LinkCard";
 
 const LinkPage = () => {
   const [urls, setUrls] = useState([]);
   const [loading, setLoading] = useState(false);
   const [totalLinks, setTotalLinks] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUrls = async () => {
@@ -21,6 +25,7 @@ const LinkPage = () => {
         const urls = response.data.urls;
         setUrls(urls);
         setTotalLinks(urls.length);
+        console.log(urls)
       } catch (error) {
         console.log(error);
       } finally {
@@ -32,9 +37,9 @@ const LinkPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="mx-8 pb-5">
       {loading && <BarLoader width={"100%"} color="#36d7b7" />}
-      <div className="m-10">
+      <div>
         <Card>
           <CardHeader>
             <CardTitle>Links created</CardTitle>
@@ -44,6 +49,19 @@ const LinkPage = () => {
           </CardContent>
         </Card>
       </div>
+      <div className="flex justify-between mt-4">
+        <h1 className="text-4xl font-extrabold">My Links</h1>
+        <Button
+          variant={"outline"}
+          className="cursor-pointer"
+          onClick={() => navigate("/")}
+        >
+          Create Link
+        </Button>
+      </div>
+      {(urls).map((url) => {
+        return <LinkCard key={url._id} url={url} />;
+      })}
     </div>
   );
 };

@@ -52,7 +52,7 @@ const Header = () => {
             </Button>
           ) : (
             <DropdownMenu className="cursor-pointer">
-              <DropdownMenuTrigger className="bg-gray-200 dark:bg-gray-800 text-gray-950 dark:text-white font-extrabold px-5 py-1.5 rounded-md">
+              <DropdownMenuTrigger className="bg-gray-200 dark:bg-gray-800 text-gray-950 dark:text-white font-extrabold px-5 py-1.5 rounded-md hover:text-blue-300 dark:hover:text-yellow-600 cursor-pointer">
                 {user && user.name.at(0)}
               </DropdownMenuTrigger>
               <DropdownMenuContent>
