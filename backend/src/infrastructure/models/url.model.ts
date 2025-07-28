@@ -4,7 +4,6 @@ interface IUrl extends Document {
   userId: string;
   originalUrl: string;
   shortCode: string;
-  title: string;
   createdAt: Date;
   expiresAt: Date;
   analytics?: {
@@ -35,9 +34,6 @@ const UrlSchema: Schema = new Schema({
     required: true,
   },
   shortCode: {
-    type: String,
-  },
-  title: {
     type: String,
   },
   createdAt: {

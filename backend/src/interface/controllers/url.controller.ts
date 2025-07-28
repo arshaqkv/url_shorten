@@ -7,10 +7,10 @@ class UrlController {
   //shorten url
   async createShortUrl(req: Request, res: Response, next: NextFunction) {
     const { id } = req.user;
-    const { originalUrl, title } = req.body;
+    const { originalUrl } = req.body;
     try {
       const createShortUrl = UrlDIContainer.getCreateShortUrlUseCase();
-      const shortCode = await createShortUrl.execute(id, originalUrl, title);
+      const shortCode = await createShortUrl.execute(id, originalUrl);
       const shortUrl = `${req.protocol}://${req.get("host")}/${shortCode}`;
       res.status(HttpStatus.CREATED).json({ shortUrl });
     } catch (error: any) {

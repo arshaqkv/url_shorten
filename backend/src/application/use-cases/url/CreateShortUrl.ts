@@ -11,14 +11,9 @@ export class CreateShortUrl {
   async execute(
     userId: string,
     originalUrl: string,
-    title: string
   ): Promise<string> {
     if (!originalUrl || !isValidUrl(originalUrl)) {
       throw new CustomError("Invalid or missing URL", HttpStatus.BAD_REQUEST);
-    }
-
-    if (!title) {
-      throw new CustomError("Title is required", HttpStatus.BAD_REQUEST);
     }
 
     const existingUrl = await this.urlRepository.getUrlByOriginalUrl(
@@ -48,7 +43,6 @@ export class CreateShortUrl {
       userId,
       originalUrl,
       shortCode,
-      title,
       undefined,
       expiresAt
     );
