@@ -17,7 +17,7 @@ const LinkCard = ({ url }) => {
           <span className="text-3xl text-blue-400 font-extrabold hover:underline cursor-pointer">{`${backend}/${url.shortCode}`}</span>
           <span className="flex items-center gap-1 hover:underline cursor-pointer"><Link2 />{url.originalUrl}</span>
           <span className="flex items-end font-extralight text-sm flex-1">Created: {new Date(url.createdAt).toLocaleDateString()}</span>
-          <span className="flex items-end text-red-300 font-extralight text-sm flex-1">
+          <span className="flex items-end text-red-700 dark:text-red-300 font-extralight text-sm flex-1">
             Expires at: {new Date(url.expiresAt).toLocaleDateString()}{" "}
           </span>
         </Link>

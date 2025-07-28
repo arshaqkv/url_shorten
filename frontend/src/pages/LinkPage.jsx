@@ -14,7 +14,6 @@ import LinkCard from "@/components/LinkCard";
 const LinkPage = () => {
   const [urls, setUrls] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [totalLinks, setTotalLinks] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,8 +23,6 @@ const LinkPage = () => {
         const response = await axios.get("/api/url");
         const urls = response.data.urls;
         setUrls(urls);
-        setTotalLinks(urls.length);
-        console.log(urls)
       } catch (error) {
         console.log(error);
       } finally {
@@ -45,7 +42,7 @@ const LinkPage = () => {
             <CardTitle>Links created</CardTitle>
           </CardHeader>
           <CardContent>
-            <p>{totalLinks}</p>
+            <p>{urls.length}</p>
           </CardContent>
         </Card>
       </div>
@@ -59,7 +56,7 @@ const LinkPage = () => {
           Create Link
         </Button>
       </div>
-      {(urls).map((url) => {
+      {urls.map((url) => {
         return <LinkCard key={url._id} url={url} />;
       })}
     </div>
